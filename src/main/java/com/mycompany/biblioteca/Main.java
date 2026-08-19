@@ -24,21 +24,55 @@ public class Main {
     }
 
     public void createClient(){
+        long ID;
         try {
-            client.setID(Integer.parseInt(JOptionPane.showInputDialog("Ingrese el ID del Cliente: ")));
+            ID = Long.parseLong(JOptionPane.showInputDialog("Ingrese el ID del Cliente: "));
+            if(searchID(ID) != null){
+                JOptionPane.showMessageDialog(null, "ID ya existente", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                client.setID(ID);
+                client.setName(JOptionPane.showInputDialog(null, "Ingrese el nombre del Cliente: "));
+                client.setPhoneNumber(Long.parseLong(JOptionPane.showInputDialog("Ingrese el numero de telefono del Cliente: ")));
+                client.setEmail(JOptionPane.showInputDialog("Ingrese el email del Cliente: "));
+                clients.add(client);
+            }
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Requiere Formato NUMERICO", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+        }  
         
-        client.setName(JOptionPane.showInputDialog(null, "Ingrese el nombre del Cliente: "));
-        
-        try {
-            client.setPhoneNumber(Long.parseLong(JOptionPane.showInputDialog("Ingrese el numero de telefono del Cliente: ")));
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Requiere Formato NUMERICO", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        client.setEmail(JOptionPane.showInputDialog("Ingrese el email del Cliente: "));
-        clients.add(client);
     }
+    
+    public Client searchID(long ID){
+        for (Client cl1 : clients){
+            if (cl1.getID() == ID){
+                return cl1;
+            }
+        }
+        return null;
+    }
+
+    public void readClient(){
+        long ID;
+        Client cl1 = null;
+        try {
+            ID = Long.parseLong(JOptionPane.showInputDialog("Ingrese el ID del Cliente: "));
+            cl1 = searchID(ID);
+            if (cl1 != null){
+                JOptionPane.showMessageDialog(null, "DATOS DEL CLIENTE CON ID " + ID + "\n"
+                + "Nombre: " + cl1.getName() + "\n"
+                + "ID: " + cl1.getID() + "\n"
+                + "Telefono: " + cl1.getPhoneNumber() + "\n"
+                + "Email: " + cl1.getEmail());
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe cliente registrado con ese ID");
+            }
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Requiere Formato NUMERICO", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
 }
+    
+      
