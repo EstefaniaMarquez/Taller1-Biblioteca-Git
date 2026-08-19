@@ -35,6 +35,7 @@ public class Main {
                 client.setPhoneNumber(Long.parseLong(JOptionPane.showInputDialog("Ingrese el numero de telefono del Cliente: ")));
                 client.setEmail(JOptionPane.showInputDialog("Ingrese el email del Cliente: "));
                 clients.add(client);
+                JOptionPane.showMessageDialog(null, "Cliente Creado con Exito");
             }
             
         } catch (NumberFormatException e) {
@@ -75,6 +76,8 @@ public class Main {
     void updateClient(){
         long ID;
         Client cl1 = null;
+        //cl1 viene siendo Client1, una instancia de tipo Client
+        
         String name, email;
         long phoneNumber;
         try {
@@ -90,6 +93,7 @@ public class Main {
                 cl1.setName(name);
                 cl1.setPhoneNumber(phoneNumber);
                 cl1.setEmail(email);
+                JOptionPane.showMessageDialog(null, "Cliente Actualizado con Exito");
             }else{
                 JOptionPane.showMessageDialog(null, "No existe cliente registrado con ese ID");
             }
@@ -99,7 +103,20 @@ public class Main {
     }
     
     void deleteClient(){
-        
+        long ID;
+        Client cl1 = null;
+        try {
+            ID = Long.parseLong(JOptionPane.showInputDialog("Ingrese el ID del Cliente: "));
+            cl1 = searchID(ID);
+            if (cl1 != null){
+                clients.remove(cl1);
+                JOptionPane.showMessageDialog(null, "Cliente eliminado con Exito");
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe cliente registrado con ese ID");
+            }
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Requiere Formato NUMERICO", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
     
