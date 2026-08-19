@@ -72,7 +72,35 @@ public class Main {
         }
     }
     
+    void updateClient(){
+        long ID;
+        Client cl1 = null;
+        String name, email;
+        long phoneNumber;
+        try {
+            ID = Long.parseLong(JOptionPane.showInputDialog("Ingrese el ID del Cliente a Modificar: "));
+            cl1 = searchID(ID);
+            if (cl1 != null){
+                name = JOptionPane.showInputDialog(null, "ACTUALIZACION DE CLIENTE \nn"
+                + "Nombre Actualizado: " );
+                phoneNumber = Long.parseLong(JOptionPane.showInputDialog(null, "ACTUALIZACION DE CLIENTE \nn"
+                + "Numero de Telefono Actualizado: " ));
+                email = name = JOptionPane.showInputDialog(null, "ACTUALIZACION DE CLIENTE \nn"
+                + "Email Actualizado: " );
+                cl1.setName(name);
+                cl1.setPhoneNumber(phoneNumber);
+                cl1.setEmail(email);
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe cliente registrado con ese ID");
+            }
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Requiere Formato NUMERICO", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     
+    void deleteClient(){
+        
+    }
 }
     
       
