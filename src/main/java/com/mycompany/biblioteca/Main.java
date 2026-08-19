@@ -24,17 +24,18 @@ public class Main {
     }
 
     public void createClient(){
-        long ID;
+        long ID, phoneNumber;
+        String name, email;
         try {
             ID = Long.parseLong(JOptionPane.showInputDialog("Ingrese el ID del Cliente: "));
             if(searchID(ID) != null){
                 JOptionPane.showMessageDialog(null, "ID ya existente", "ERROR", JOptionPane.ERROR_MESSAGE);
             }else{
-                client.setID(ID);
-                client.setName(JOptionPane.showInputDialog(null, "Ingrese el nombre del Cliente: "));
-                client.setPhoneNumber(Long.parseLong(JOptionPane.showInputDialog("Ingrese el numero de telefono del Cliente: ")));
-                client.setEmail(JOptionPane.showInputDialog("Ingrese el email del Cliente: "));
-                clients.add(client);
+                name = (JOptionPane.showInputDialog(null, "Ingrese el nombre del Cliente: "));
+                phoneNumber = (Long.parseLong(JOptionPane.showInputDialog("Ingrese el numero de telefono del Cliente: ")));
+                email = (JOptionPane.showInputDialog("Ingrese el email del Cliente: "));
+                Client cl1 = new Client(email, ID, name, phoneNumber);
+                clients.add(cl1);
                 JOptionPane.showMessageDialog(null, "Cliente Creado con Exito");
             }
             
